@@ -1,0 +1,23 @@
+
+    .active {
+        page-break-after:always;
+        width: 100%;
+        min-height: 100%;
+        font-size: 300%;
+        color: black;
+    }
+
+    ul {
+        list-style-type: none;
+        border: 4px dotted green;
+    }
+    img{
+        height:50%;
+        width:50%;
+    }
+    text{
+        color: black;
+    }
+    
+
+

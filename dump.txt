@@ -1,0 +1,25 @@
+   $(this).each(function(){
+                                                       $('#card').append("<li>"+"<span>"+'CLIENT:'+"</span>"+x.Supplier+"</li>")
+                                                        .append("<li>"+"<span>"+'OT_NUMBER:'+"</span>"+x.OT+"</li>")
+                                                        .append("<li>"+"<span>"+'INVOICE:'+"</span>"+x.Invoice+"</li>")
+                                                        .append("<li>"+y+"</li>")
+                                        })
+
+
+                                         $(this).attr('id',function(index){
+                                            alert (index);
+                                            return 'card'+index;
+                                        });
+
+
+
+                                         $().each(function(){
+                                                       $(this).append("<li>"+"<span>"+'CLIENT:'+"</span>"+x.Supplier+"</li>")
+                                                        .append("<li>"+"<span>"+'OT_NUMBER:'+"</span>"+x.OT+"</li>")
+                                                        .append("<li>"+"<span>"+'INVOICE:'+"</span>"+x.Invoice+"</li>")
+                                                        .append("<li>"+y+"</li>")
+                                        })
+
+
+
+             var y=<?php echo json_encode(printQr($row['Supplier'].",".$row['OT'].",".$row['Invoice']));?>;
