@@ -242,7 +242,7 @@
         }  
         catch(Exception $e)  
         {  
-            echo("Error!");  
+            echo("Error!".$e);  
         }  
     }
 
