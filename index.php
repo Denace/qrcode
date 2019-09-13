@@ -5,8 +5,7 @@
         body {
             width: 550px;
             font-family: Arial;
-        }
-
+        }  
         #frm-qr {
             padding: 20px 40px;
             background: #CCC;
@@ -59,7 +58,6 @@
         }
         .qr{
             float:right;
-
         }
             .state-icon {
             left: -5px;
@@ -125,9 +123,6 @@
                 valid = false;
             }
             return valid;
-        }
-        function disp(){
-
         }
     </script>
 
@@ -267,14 +262,7 @@
             $imageData=$bobj->getPngData(); 
             $divdata=$bobj->getHtmlDiv();          
             $timestamp = time();
-            file_put_contents($targetPath . $i . '.png', $imageData);
-            //return $divdata;
-            /*
-            ?>
-            <div class="result-heading">Output:</div>
-            <img src="<?php echo $targetPath . $timestamp ; ?>.png" width="150px"
-                height="150px">     
-        */        
+            file_put_contents($targetPath . $i . '.png', $imageData);  
     }
 
     /*Print the QR code as an HTML DIV based on Sting input*/
@@ -388,7 +376,7 @@
             checkedItems[counter] =li.innerText;      
             counter++;
         });
-        $(".active").printThis({debug:true,importCSS: false});
+        $(".active").printThis({debug:true,importCSS: true,});
         //$('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
     });
 });

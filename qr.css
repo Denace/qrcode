@@ -1,5 +1,5 @@
 
-    .active {
+    .list-group-item.active {
         page-break-after:always;
         width: 100%;
         min-height: 100%;
@@ -12,8 +12,8 @@
         border: 4px dotted green;
     }
     img{
-        height:50%;
-        width:50%;
+        height:60%;
+        width:70%;
     }
     text{
         color: black;
