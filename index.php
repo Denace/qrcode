@@ -133,7 +133,7 @@
     {  
         try  
         {  
-            $serverName = "testsrvr";  
+            $serverName = "chaisrvr";  
             $connectionOptions = array("Database"=>"Harvestitdb",  
                 "Uid"=>"harvestitadmin", "PWD"=>"hitadmin");  
             $conn = sqlsrv_connect($serverName, $connectionOptions);  
@@ -161,14 +161,15 @@
             //require('mssqlconnection.php');
             $conn = OpenConnection();  
             //echo("we are reading too");
-            //$tsql = "exec sp_RFIDTAG ".$_POST["email_field"];  
-           $tsql="SELECT hs.SupplierName AS Supplier,oth.OutwardTallyNo AS OT,td.GardenInvoiceNo AS Invoice --,oth.TransactionDate,hg.GardenName,otd.NoOfPkgs,otd.ExpectedNetWeight NetWeight  
+            $tsql = "exec sp_QRTag ".$_POST["email_field"];  
+           /*$tsql="SELECT hs.SupplierName AS Supplier,oth.OutwardTallyNo AS OT,td.GardenInvoiceNo AS Invoice --,oth.TransactionDate,hg.GardenName,otd.NoOfPkgs,otd.ExpectedNetWeight NetWeight  
 			        from whOutwardTallyHdr oth  
                         inner join hsupplier hs on hs.SupplierCode=oth.SupplierCode  
                         inner join whOutwardTallyDtl otd on otd.SerialNo=oth.SerialNo  
                         inner join whTeaDetails td on td.SerialNo=otd.GISerialNo  
                         inner join hGarden hg on hg.gardenCode=td.GardenCode  
                     where OutwardTallyNo=".$_POST["email_field"];
+            */
 
             $getProducts = sqlsrv_query($conn, $tsql);  
             if ($getProducts == FALSE)  
@@ -213,11 +214,15 @@
                 
                 $("#qrdata").addClass("qrlist");                
                 $(x).each(function(){                   
-                    var y=<?php echo json_encode(printQr($row['Supplier'].",".$row['OT'].",".$row['Invoice'],$i));?>;
+                    var y=<?php echo json_encode(printQr($row['SupplierName'].",".$row['BagNumber'].",".$row['GardenInvoiceNo']
+                                                            .",".$row['GardenName'].",".$row['GradeName'].",".$row['batchnumber'],$i));?>;
                         $("#qrdata").append($("<ul class='list-group checked-list-box list-group-item'></ul>")
-                                            .append("<li>"+"<span>"+'CLIENT:'+"</span>"+x.Supplier+"</li>")
-                                            .append("<li>"+"<span>"+'OT_NUMBER:'+"</span>"+x.OT+"</li>")
-                                            .append("<li>"+"<span>"+'INVOICE:'+"</span>"+x.Invoice+"</li>")
+                                            .append("<li>"+"<span>"+'BAG NUMBER:'+"</span>"+x.BagNumber+"</li>")
+                                            .append("<li>"+"<span>"+'CLIENT:'+"</span>"+x.SupplierName+"</li>")
+                                            .append("<li>"+"<span>"+'INVOICE:'+"</span>"+x.GardenInvoiceNo+"</li>")
+                                            .append("<li>"+"<span>"+'GARDEN:'+"</span>"+x.GardenName+"</li>")
+                                            .append("<li>"+"<span>"+'GRADE:'+"</span>"+x.GradeName+"</li>")
+                                            .append("<li>"+"<span>"+'BATCH #:'+"</span>"+x.batchnumber+"</li>")
                                             .append("<img src=/qrcode1/qr-code/<?php echo $i ;?>.png>")
                                             //.append("<li>"+y+"</li>")
 
